@@ -12,47 +12,45 @@ interface MultiTextProps {
     onRemove: (value: string) => void
 }
 const MultiText: React.FC<MultiTextProps> = ({
-    placeholder,
-    value,
-    onChange,
-    onRemove
+  placeholder,
+  value,
+  onChange,
+  onRemove,
 }) => {
-    const [inputValue, setInputValue] = useState("")
-    const addValue = (item: string) => {
-        onChange(item)
-        setInputValue("")
-    }
-    return (
-        <>
-            <Input
-                placeholder={placeholder}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        e.preventDefault()
-                        addValue(inputValue)
-                    }
-                }}
-            />
-            <div className='flex gap-1 flex-wrap mt-4'>
-                {value.map((item: any, index: any) => (
-                    <Badge
-                        key={index}
-                        className='bg-gray-600 text-white'>
-                        {item}
-                        <button
-                            className='ml-1 rounded-full outline-none hover:bg-red-500'
-                            onClick={() => onRemove(item)}
-                            type='button'
-                        >
-                            <X className='h-3 w-3' />
-                        </button>
-                    </Badge>
-                ))}
-            </div>
-        </>
-    )
-}
+  const [inputValue, setInputValue] = useState("");
+  const addValue = (item: string) => {
+    onChange(value.concat(item));
+    setInputValue("");
+  };
+  return (
+    <>
+      <Input
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addValue(inputValue);
+          }
+        }}
+      />
+      <div className="flex gap-1 flex-wrap mt-4">
+        {value.split(",").map((item: string, index: number) => (
+          <Badge key={index} className="bg-gray-600 text-white">
+            {item}
+            <button
+              className="ml-1 rounded-full outline-none hover:bg-red-500"
+              onClick={() => onRemove(item)}
+              type="button"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </Badge>
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default MultiText
