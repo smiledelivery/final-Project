@@ -32,7 +32,7 @@ const Navbar = () => {
 
             </div>
             <div className='flex items-center justify-between'>
-                <Image src='/logo.png' alt='logo' width={150} height={70} className='rounded-full' />
+                <Image src='/logo.png' alt='logo' width={50} height={50} className='rounded-full m-2' />
                 <div className='static top-0 z-20 w-full flex justify-between items-center px-8 py-4 bg-blue-400 shadow-xl max-md:hidden'>
 
                     <div className='flex gap-4'>
@@ -48,9 +48,9 @@ const Navbar = () => {
                     </div>
 
                 </div>
-                <div className='relative flex gap-4 justify-between items-center'>
+                <div className='relative flex gap-4 justify-between items-center mr-4'>
                     <Menu
-                        className='cursor-pointer md:hidden'
+                        className='cursor-pointer text-white md:hidden'
                         onClick={() => setDropdownMenu(!dropdownMenu)}
                     />
                     {dropdownMenu && (
