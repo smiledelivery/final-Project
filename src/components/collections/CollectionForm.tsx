@@ -41,7 +41,7 @@ const CollectionForm: React.FC<CollectionsFormProps> = ({
         resolver: zodResolver(formSchema),
         defaultValues: initialData ? initialData : {
             title: '',
-            description: '',
+            Description: '',
             image: ''
         }
     })
@@ -102,7 +102,7 @@ const CollectionForm: React.FC<CollectionsFormProps> = ({
                     />
                     <FormField
                         control={form.control}
-                        name="description"
+                        name="Description"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Description</FormLabel>
