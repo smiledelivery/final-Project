@@ -72,19 +72,20 @@ const ProductForm: React.FC<ProductFormProps> = ({
                 collections: initialData.collections.map(
                     (collection) => collection._id
                 ),
-            } : {
-                title: '',
-                description: '',
+            }
+            : {
+                title: "",
+                Description: "",
                 media: [],
-                category: '',
+                category: "",
                 collections: [],
                 tags: [],
                 sizes: [],
                 colors: [],
                 price: 0.1,
                 expense: 0.1,
-            }
-    })
+            },
+    });
     const handleKeyPress = (
         e:
             | React.KeyboardEvent<HTMLInputElement>

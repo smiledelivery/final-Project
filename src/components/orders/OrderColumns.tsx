@@ -28,7 +28,7 @@ export const columns: ColumnDef<OrderColumnType>[] = [
     },
     {
         accessorKey: 'totalAmount',
-        header: 'Total Amount'
+        header: 'Total ($)'
     },
     {
         accessorKey: 'createdAt',
