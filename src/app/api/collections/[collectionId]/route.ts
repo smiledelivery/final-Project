@@ -61,14 +61,23 @@ export const DELETE = async (
   req: NextRequest,
   { params }: { params: { collectionId: string } }
 ) => {
-    try {
-        const {userId} = auth()
-        if (!userId) {
-            return new NextResponse('Unauthorized', { status: 401})
-        }
-        await connectDB()
-        
-    } catch (error) {
-        
+  try {
+    const { userId } = auth();
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
     }
+    await connectDB();
+    await Collection.findByIdAndDelete(params.collectionId);
+    await Product.updateMany(
+      { collections: params.collectionId },
+      { $pull: { collections: params.collectionId } }
+    );
+    return new NextResponse("Collection is deleted", {
+      status: 200,
+    });
+  } catch (error) {
+    console.log("collection Id Delete page route problem::", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
 };
+export const dynamic = "force-dynamic";
