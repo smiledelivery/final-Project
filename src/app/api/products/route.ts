@@ -40,14 +40,34 @@ export const POST = async (req: NextRequest) => {
       price,
       expense,
     });
-    await newProduct.save()
-    if(collections) {
-        for(const collectionId of collections) {
-            const collection = await Collection.findById(collectionId)
-            if(collection) {
-                collection.products.push(newProduct._id)
-            }
+    await newProduct.save();
+    if (collections) {
+      for (const collectionId of collections) {
+        const collection = await Collection.findById(collectionId);
+        if (collection) {
+          collection.products.push(newProduct._id);
+          await collection.save();
         }
+      }
     }
-  } catch (error) {}
+    return NextResponse.json(newProduct, { status: 200 });
+  } catch (error) {
+    console.log("product Post route page problem :: ", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
 };
+
+export const GET = async (req: NextRequest) => {
+  try {
+    await connectDB();
+    const products = await Product.find()
+      .sort({ createdAt: "desc" })
+      .populate({ path: "collections", model: Collection });
+    return NextResponse.json(products, { status: 200 });
+  } catch (error) {
+    console.log("products Get route page problem", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
+};
+
+export const dynamic = "force-dynamic";
