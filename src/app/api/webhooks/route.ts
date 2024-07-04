@@ -48,10 +48,23 @@ export const POST = async (req: NextRequest) => {
         products: orderItems,
         shippingAddress,
         shippingRate: session.shipping_cost?.shipping_rate,
-        totalAmount: session.amount_total ? session.amount / 100 : 0
-      })
-      await newOrder.save()
-      
+        totalAmount: session.amount_total ? session.amount_total / 100 : 0,
+      });
+      await newOrder.save();
+      let customer = await Customer.findOne({ clerkId: customerInfo.clerkId });
+      if (customer) {
+        customer.orders.push(newOrder._id);
+      } else {
+        customer = new Customer({
+          ...customerInfo,
+          orders: [newOrder._id],
+        });
+      }
+      await customer.save();
     }
-  } catch (error) {}
+    return new NextResponse("Order created", { status: 200 });
+  } catch (error) {
+    console.log("webhooks post route page problem", error);
+    return new NextResponse("Failed to create the order", { status: 500 });
+  }
 };
