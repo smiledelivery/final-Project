@@ -13,7 +13,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from "@/components/ui/form"
+} from "@/lib/components/ui/form"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
 import ImageUpload from "../custom/ImageUpload"
