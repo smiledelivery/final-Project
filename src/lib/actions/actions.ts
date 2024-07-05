@@ -1,4 +1,3 @@
-import { connect } from "http2";
 import Customer from "../models/Customer";
 import Order from "../models/Order";
 import { connectDB } from "../mongoDB";

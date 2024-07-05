@@ -23,7 +23,7 @@ import Delete from '../custom/Delete'
 
 const formSchema = z.object({
     title: z.string().min(2).max(30),
-    Description: z.string().min(2).max(500).trim(),
+    description: z.string().min(2).max(500).trim(),
     image: z.string()
 })
 
@@ -41,7 +41,7 @@ const CollectionForm: React.FC<CollectionsFormProps> = ({
         resolver: zodResolver(formSchema),
         defaultValues: initialData ? initialData : {
             title: '',
-            Description: '',
+            description: '',
             image: ''
         }
     })
@@ -102,7 +102,7 @@ const CollectionForm: React.FC<CollectionsFormProps> = ({
                     />
                     <FormField
                         control={form.control}
-                        name="Description"
+                        name="description"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Description</FormLabel>

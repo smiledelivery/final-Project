@@ -13,7 +13,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from "@/lib/components/ui/form"
+} from "@/components/ui/form"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
 import ImageUpload from "../custom/ImageUpload"
@@ -26,7 +26,7 @@ import Loader from "../custom/Loader"
 
 const formSchema = z.object({
     title: z.string().min(2).max(30),
-    Description: z.string().min(2).max(500).trim(),
+    description: z.string().min(2).max(500).trim(),
     media: z.array(z.string()),
     category: z.string(),
     collections: z.string(),
@@ -75,7 +75,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
             }
             : {
                 title: "",
-                Description: "",
+                description: "",
                 media: [],
                 category: "",
                 collections: [],

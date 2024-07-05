@@ -17,7 +17,7 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/lib/components/ui/table";
+} from "@/components/ui/table";
 import { Input } from '../ui/input';
 import { headers } from 'next/headers';
 
